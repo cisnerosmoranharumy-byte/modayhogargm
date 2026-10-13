@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moda & Hogar GM | Catálogo y Pedidos - Gabriela Morán</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              coral: '#FF6B6B',
+              coralDark: '#E85050',
+              peach: '#FFA07A',
+              mint: '#3EBFA9',
+              mintLight: '#E8FBF8',
+              yellow: '#FFD166',
+              dark: '#242D38',
+              cream: '#FFF9F5'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            brand: ['"Quicksand"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #FFF9F5;
+      color: #2D3748;
+    }
+    .font-brand {
+      font-family: 'Quicksand', sans-serif;
+    }
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px -10px rgba(255, 107, 107, 0.22);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-brand-cream text-gray-800 antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+  <aside aria-label="Aviso promocional" class="bg-gradient-to-r from-brand-coral via-brand-peach to-brand-mint text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center shadow-sm">
+    <div class="container mx-auto flex items-center justify-center gap-2">
+      <span>✨</span>
+      <span>¡Atención personalizada por WhatsApp! Envíos rápidos por Olva, Shalom y entregas locales 🇵🇪</span>
+      <span>✨</span>
+    </div>
+  </aside>
+
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-orange-100 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <a href="#inicio" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-coral to-brand-yellow flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+            <span class="font-extrabold text-lg tracking-wider">GM</span>
+          </div>
+          <div>
+            <span class="text-xl sm:text-2xl font-extrabold tracking-tight font-brand bg-gradient-to-r from-brand-coral to-brand-peach bg-clip-text text-transparent block leading-tight">
+              Moda & Hogar GM
+            </span>
+            <span class="text-xs text-gray-500 font-medium">De: Gabriela Morán</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-7 text-sm font-bold text-gray-700">
+          <a href="#inicio" class="hover:text-brand-coral transition-colors">Inicio</a>
+          <a href="#catalogo" class="hover:text-brand-coral transition-colors">Catálogo</a>
+          <a href="#sobre-gaby" class="hover:text-brand-coral transition-colors">Conoce a Doña Gaby</a>
+          <a href="#preguntas" class="hover:text-brand-coral transition-colors">Preguntas</a>
+          <a href="#contacto" class="hover:text-brand-coral transition-colors">Contacto</a>
+        </nav>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-3">
+          <a href="https://wa.me/51919531430?text=¡Hola%20Doña%20Gaby!%20Vengo%20de%20su%20página%20Moda%20y%20Hogar%20GM%20y%20quisiera%20hacerle%20una%20consulta." 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="hidden sm:inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2 rounded-full text-xs shadow-md transition-all">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>919 531 430</span>
+          </a>
+
+          <!-- Cart Trigger Button -->
+          <button onclick="toggleCartDrawer(true)" class="relative p-2.5 rounded-2xl bg-brand-mintLight text-teal-800 hover:bg-teal-100 transition-colors" aria-label="Abrir carrito de compras">
+            <i class="fa-solid fa-bag-shopping text-xl text-teal-700"></i>
+            <span id="cart-badge-count" class="absolute -top-1.5 -right-1.5 bg-brand-coral text-white text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-md">0</span>
+          </button>
+
+          <!-- Mobile Nav Toggle -->
+          <button onclick="toggleMobileNav()" class="md:hidden p-2 rounded-xl text-gray-700 hover:text-brand-coral" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-nav" class="hidden md:hidden border-t border-orange-100 bg-white px-4 pt-3 pb-6 space-y-2 text-sm font-semibold text-gray-700 shadow-xl">
+      <a href="#inicio" onclick="toggleMobileNav()" class="block py-2.5 px-3 rounded-xl hover:bg-orange-50">🏠 Inicio</a>
+      <a href="#catalogo" onclick="toggleMobileNav()" class="block py-2.5 px-3 rounded-xl hover:bg-orange-50">🛍️ Catálogo de Productos</a>
+      <a href="#sobre-gaby" onclick="toggleMobileNav()" class="block py-2.5 px-3 rounded-xl hover:bg-orange-50">🌸 Conoce a Gabriela</a>
+      <a href="#preguntas" onclick="toggleMobileNav()" class="block py-2.5 px-3 rounded-xl hover:bg-orange-50">❓ Preguntas Frecuentes</a>
+      <a href="#contacto" onclick="toggleMobileNav()" class="block py-2.5 px-3 rounded-xl hover:bg-orange-50">📞 Contacto</a>
+      <a href="https://wa.me/51919531430?text=¡Hola%20Doña%20Gaby!%20Quisiera%20hacerle%20una%20consulta." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-emerald-500 text-white py-3 rounded-xl font-bold w-full mt-2">
+        <i class="fa-brands fa-whatsapp text-lg"></i>
+        <span>Escribir al WhatsApp (+51 919 531 430)</span>
+      </a>
+    </div>
+  </header>
+
+  <section id="inicio" class="relative overflow-hidden py-10 md:py-16 bg-gradient-to-b from-orange-50/70 via-rose-50/30 to-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left Banner Column -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-5">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-rose-200 shadow-xs text-brand-coral font-bold text-xs">
+            <span class="w-2 h-2 rounded-full bg-brand-coral animate-ping"></span>
+            Venta por unidad con precios increíbles
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold font-brand text-gray-900 leading-tight">
+            Viste con estilo y duerme en las nubes con 
+            <span class="bg-gradient-to-r from-brand-coral to-brand-peach bg-clip-text text-transparent">Moda & Hogar GM</span>
+          </h1>
+
+          <p class="text-sm sm:text-base text-gray-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            ¡Hola! Soy <strong>Gabriela Morán</strong>. Compro al por mayor para ofrecerte sábanas súper suaves, almohadas cómodas, casacas abrigadoras, polos frescos y pantalones de primera calidad por unidad y con atención risueña y cariñosa.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
+            <a href="#catalogo" class="w-full sm:w-auto px-6 py-3.5 bg-brand-coral hover:bg-brand-coralDark text-white font-bold rounded-2xl shadow-md transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-bag-shopping"></i>
+              <span>Ver Catálogo Disponible</span>
+            </a>
+            <a href="https://wa.me/51919531430?text=¡Hola%20Doña%20Gaby!%20Deseo%20conocer%20los%20modelos%20disponibles%20de%20hoy." 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="w-full sm:w-auto px-6 py-3.5 bg-white border border-emerald-500 text-emerald-600 hover:bg-emerald-50 font-bold rounded-2xl transition-all flex items-center justify-center gap-2">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>Consultar en WhatsApp</span>
+            </a>
+          </div>
+
+          <!-- Feature badges -->
+          <div class="pt-4 border-t border-orange-200/60 grid grid-cols-3 gap-2 text-center lg:text-left">
+            <div>
+              <p class="text-lg font-black text-brand-coral">100% Suave</p>
+              <p class="text-[11px] text-gray-500 font-medium">Telas antialérgicas</p>
+            </div>
+            <div>
+              <p class="text-lg font-black text-brand-mint">Yape & Plin</p>
+              <p class="text-[11px] text-gray-500 font-medium">Pagos seguros</p>
+            </div>
+            <div>
+              <p class="text-lg font-black text-amber-500">Todo el Perú</p>
+              <p class="text-[11px] text-gray-500 font-medium">Envíos rápidos</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Card: Avatar Doña Gaby -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="bg-white p-6 rounded-3xl border border-orange-100 shadow-xl max-w-sm w-full text-center">
+            
+            <!-- Avatar Illustration -->
+            <div class="w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden p-1 bg-gradient-to-tr from-brand-coral via-yellow-300 to-brand-mint shadow-inner">
+              <svg viewBox="0 0 200 200" class="w-full h-full rounded-full bg-orange-50">
+                <circle cx="100" cy="100" r="100" fill="#FFF3E0"/>
+                <!-- Hair background curls -->
+                <circle cx="45" cy="80" r="28" fill="#1A1A1A"/>
+                <circle cx="35" cy="115" r="28" fill="#1A1A1A"/>
+                <circle cx="155" cy="80" r="28" fill="#1A1A1A"/>
+                <circle cx="165" cy="115" r="28" fill="#1A1A1A"/>
+                <circle cx="100" cy="50" r="42" fill="#1A1A1A"/>
+                <!-- Face -->
+                <path d="M85 140 L115 140 L115 165 L85 165 Z" fill="#F2B28C"/>
+                <path d="M40 200 L65 155 L135 155 L160 200 Z" fill="#3B536E"/>
+                <path d="M85 155 L100 185 L115 155 Z" fill="#FFFFFF"/>
+                <path d="M65 95 C65 140, 135 140, 135 95 C135 65, 65 65, 65 95 Z" fill="#F2B28C"/>
+                <!-- Front curls -->
+                <circle cx="60" cy="72" r="18" fill="#1A1A1A"/>
+                <circle cx="85" cy="62" r="18" fill="#1A1A1A"/>
+                <circle cx="115" cy="62" r="18" fill="#1A1A1A"/>
+                <circle cx="140" cy="72" r="18" fill="#1A1A1A"/>
+                <circle cx="50" cy="100" r="18" fill="#1A1A1A"/>
+                <circle cx="150" cy="100" r="18" fill="#1A1A1A"/>
+                <!-- Smile and eyes -->
+                <ellipse cx="82" cy="100" rx="5" ry="6" fill="#1A1A1A"/>
+                <ellipse cx="118" cy="100" rx="5" ry="6" fill="#1A1A1A"/>
+                <circle cx="73" cy="112" r="8" fill="#FF8A80" opacity="0.45"/>
+                <circle cx="127" cy="112" r="8" fill="#FF8A80" opacity="0.45"/>
+                <path d="M82 118 Q100 138 118 118 Z" fill="#D32F2F"/>
+                <path d="M85 119 Q100 126 115 119 Z" fill="#FFFFFF"/>
+              </svg>
+            </div>
+
+            <h3 class="text-xl font-bold font-brand text-gray-900">Gabriela Morán</h3>
+            <p class="text-xs text-brand-coral font-bold">"¡Atención alegre y rápida por WhatsApp!"</p>
+
+            <div class="mt-4 p-3.5 bg-orange-50 rounded-2xl text-xs text-gray-700 text-left space-y-1.5 border border-orange-100">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-500 font-bold"></i>
+                <span>Sábanas, cubrecamas y almohadas de descanso</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-500 font-bold"></i>
+                <span>Polos, casacas y pantalones en tendencia</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-500 font-bold"></i>
+                <span>Precios por unidad para cuidar tu bolsillo</span>
+              </div>
+            </div>
+            
+            <a href="https://wa.me/51919531430?text=Hola%20Gabriela,%20me%20gustaria%20comprar%20un%20producto" target="_blank" rel="noopener noreferrer" class="mt-4 block w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold transition-colors">
+              <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp: 919 531 430
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="catalogo" class="py-14 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-coral bg-rose-100/70 px-3 py-1 rounded-full">
+          Precios por unidad
+        </span>
+        <h2 class="text-3xl font-extrabold font-brand text-gray-900 mt-2">
+          Catálogo de Productos
+        </h2>
+        <p class="text-sm text-gray-600 mt-1">
+          Escoge tus prendas y productos para el hogar, agrégalos al carrito o haz tu pedido directo.
+        </p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="flex items-center justify-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-6">
+        <button onclick="setFilter('all')" id="filter-all" class="filter-tab px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all bg-brand-coral text-white shadow-xs">
+          Todos los Productos
+        </button>
+        <button onclick="setFilter('hogar')" id="filter-hogar" class="filter-tab px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-gray-700 hover:bg-orange-50 border border-orange-100">
+          🛏️ Hogar & Cama
+        </button>
+        <button onclick="setFilter('moda')" id="filter-moda" class="filter-tab px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-gray-700 hover:bg-orange-50 border border-orange-100">
+          👕 Moda & Ropa
+        </button>
+      </div>
+
+      <!-- Product Cards Container -->
+      <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <section id="sobre-gaby" class="py-14 bg-white border-y border-orange-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        
+        <div class="space-y-4">
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-coral bg-rose-50 px-3 py-1 rounded-full border border-rose-200">
+            Conoce a Gabriela Morán
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-brand text-gray-900">
+            "Atenderte con una sonrisa y brindarte la mejor calidad es mi alegría"
+          </h2>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Inicié <strong>Moda & Hogar GM</strong> para acercar prendas de abrigo, ropa fresca de diario y sábanas de ensueño a precios de ocasión. Selecciono personalmente cada fardo y paquete mayorista para asegurar que recibas prendas duraderas, suaves y sin sorpresas.
+          </p>
+          <div class="p-4 bg-orange-50/70 rounded-2xl border border-orange-100 space-y-2 text-xs text-gray-700">
+            <p><strong>✨ Trato sincero:</strong> Antes de despachar, te envío fotos y videos reales por WhatsApp del producto exacto.</p>
+            <p><strong>📦 Empaque seguro:</strong> Cada juego de sábanas y prenda va limpio, doblado y protegido para el viaje.</p>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-brand-peach/10 to-brand-mint/10 p-6 sm:p-8 rounded-3xl border border-orange-100 text-center">
+          <h3 class="font-brand font-bold text-lg text-gray-900 mb-2">¿Cómo pagar tu compra?</h3>
+          <p class="text-xs text-gray-600 mb-6">Elige el medio de pago más fácil para ti en Perú:</p>
+          
+          <div class="grid grid-cols-2 gap-3 text-xs font-bold text-gray-800">
+            <div class="p-3 bg-white rounded-xl shadow-xs border border-purple-200">
+              <span class="text-purple-600 text-lg block mb-1">💜</span>
+              Yape
+            </div>
+            <div class="p-3 bg-white rounded-xl shadow-xs border border-teal-200">
+              <span class="text-teal-600 text-lg block mb-1">💙</span>
+              Plin
+            </div>
+            <div class="p-3 bg-white rounded-xl shadow-xs border border-blue-200">
+              <span class="text-blue-600 text-lg block mb-1">🏦</span>
+              Transferencia BCP
+            </div>
+            <div class="p-3 bg-white rounded-xl shadow-xs border border-amber-200">
+              <span class="text-amber-600 text-lg block mb-1">📦</span>
+              Pago contra entrega (zonas seleccionadas)
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="preguntas" class="py-14 bg-brand-cream">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-extrabold font-brand text-gray-900">
+          Preguntas Frecuentes
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-600 mt-1">Todo lo que necesitas saber para comprar con tranquilidad.</p>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Question 1 -->
+        <details class="bg-white p-4 rounded-2xl border border-orange-100 shadow-xs cursor-pointer group">
+          <summary class="font-bold text-sm text-gray-800 flex justify-between items-center list-none">
+            <span>¿Hacen envíos a Lima y provincias del Perú?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-brand-coral group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+            Sí. Enviamos a todo el país mediante <strong>Shalom, Olva Courier</strong> y agencias de transporte interprovincial. En Lima contamos con envíos por motorizado o puntos de entrega coordinados.
+          </p>
+        </details>
+
+        <!-- Question 2 -->
+        <details class="bg-white p-4 rounded-2xl border border-orange-100 shadow-xs cursor-pointer group">
+          <summary class="font-bold text-sm text-gray-800 flex justify-between items-center list-none">
+            <span>¿Puedo ver fotos y videos del producto antes de pagar?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-brand-coral group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+            ¡Claro que sí! Escríbenos al WhatsApp <strong>919 531 430</strong> y Doña Gaby te enviará fotos y videos detallados de las telas, costuras y colores disponibles al momento.
+          </p>
+        </details>
+
+        <!-- Question 3 -->
+        <details class="bg-white p-4 rounded-2xl border border-orange-100 shadow-xs cursor-pointer group">
+          <summary class="font-bold text-sm text-gray-800 flex justify-between items-center list-none">
+            <span>¿Cómo funciona el carrito de la página?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-brand-coral group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+            Eliges los productos que te gusten dando clic en "Agregar al Carrito". Al finalizar, presionas "Enviar Pedido por WhatsApp" y se creará automáticamente un mensaje con la lista y los montos listo para enviar a Doña Gaby.
+          </p>
+        </details>
+
+        <!-- Question 4 -->
+        <details class="bg-white p-4 rounded-2xl border border-orange-100 shadow-xs cursor-pointer group">
+          <summary class="font-bold text-sm text-gray-800 flex justify-between items-center list-none">
+            <span>¿Qué medidas tienen las sábanas?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-brand-coral group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+            Manejamos 1.5 plazas, 2 plazas y Queen size. Si buscas una medida especial, pregúntanos por WhatsApp para verificar disponibilidad inmediata en almacén.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="py-12 bg-white border-t border-orange-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <h2 class="text-2xl font-extrabold font-brand text-gray-900">¿Listo para hacer tu pedido?</h2>
+      <p class="text-sm text-gray-600 max-w-md mx-auto">
+        Comunícate directamente con Gabriela Morán al WhatsApp para asesorarte con tallas, colores y despachos.
+      </p>
+      <div class="pt-2">
+        <a href="https://wa.me/51919531430?text=¡Hola%20Doña%20Gaby!%20Deseo%20hacer%20un%20pedido%20en%20Moda%20y%20Hogar%20GM." 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3.5 rounded-2xl shadow-lg transition-all text-sm">
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+          <span>Escribir al WhatsApp: +51 919 531 430</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div id="cart-drawer-backdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-black/40 z-50 hidden transition-opacity"></div>
+
+  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-sm sm:max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- Header -->
+    <div class="p-4 border-b border-gray-100 flex items-center justify-between bg-orange-50/60">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-xl bg-brand-coral text-white flex items-center justify-center text-sm">
+          <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 text-sm font-brand">Tu Carrito de Pedido</h3>
+          <p class="text-[11px] text-gray-500">Moda & Hogar GM</p>
+        </div>
+      </div>
+      <button onclick="toggleCartDrawer(false)" class="p-2 text-gray-400 hover:text-gray-700 rounded-full" aria-label="Cerrar carrito">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Items list -->
+    <div id="cart-items" class="flex-1 overflow-y-auto p-4 space-y-3">
+      <!-- Generated by JavaScript -->
+    </div>
+
+    <!-- Footer -->
+    <div class="p-4 border-t border-gray-100 bg-gray-50/80 space-y-3">
+      <div class="flex justify-between text-sm font-extrabold text-gray-900">
+        <span>Total estimado:</span>
+        <span id="cart-total-amount" class="text-brand-coral">S/ 0.00</span>
+      </div>
+
+      <button onclick="sendCartOrderToWhatsApp()" id="cart-checkout-btn" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-xs sm:text-sm disabled:opacity-40 disabled:cursor-not-allowed">
+        <i class="fa-brands fa-whatsapp text-lg"></i>
+        <span>Enviar Pedido por WhatsApp</span>
+      </button>
+
+      <button onclick="emptyCart()" class="w-full text-center text-xs text-gray-400 hover:text-rose-500 font-semibold">
+        Vaciar carrito
+      </button>
+    </div>
+  </aside>
+
+  <a href="https://wa.me/51919531430?text=¡Hola%20Doña%20Gaby!%20Vengo%20de%20la%20página%20y%20quisiera%20consultar%20por%20sus%20productos." 
+     target="_blank" 
+     rel="noopener noreferrer"
+     class="fixed bottom-5 right-5 z-40 w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-all"
+     aria-label="Contactar a Doña Gaby por WhatsApp">
+    <i class="fa-brands fa-whatsapp text-3xl"></i>
+  </a>
+
+  <!-- Toast notification -->
+  <div id="toast" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 bg-gray-900 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-xl opacity-0 transition-opacity pointer-events-none">
+    <span id="toast-text">Producto agregado</span>
+  </div>
+
+  <footer class="bg-gray-900 text-white py-8 border-t border-gray-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+      <p class="font-bold text-gray-200">Moda & Hogar GM • Gabriela Morán</p>
+      <p class="text-gray-400">Atención para TikTok, Marketplace y envíos a todo el Perú.</p>
+      <p class="text-gray-500 text-[11px] pt-2">WhatsApp de pedidos: +51 919 531 430</p>
+    </div>
+  </footer>
+
+  <script>
+    const WHATSAPP_PHONE = "51919531430";
+
+    const catalog = [
+      {
+        id: 1,
+        name: "Juego de Sábanas Algodón Suave (2 Plazas)",
+        category: "hogar",
+        categoryName: "Hogar & Cama",
+        price: 48.00,
+        badge: "Super Suave",
+        description: "Incluye sábana plana, sábana de cajón elasticada y 2 fundas. Tela fresca y antialérgica.",
+        img: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 2,
+        name: "Casaca Abrigadora Acolchada Térmica",
+        category: "moda",
+        categoryName: "Moda & Ropa",
+        price: 55.00,
+        badge: "Abrigo Total",
+        description: "Casaca térmica con forro interno suave, cierre duradero y bolsillos. Tallas surtidas.",
+        img: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 3,
+        name: "Par de Almohadas Siliconadas Anatómicas",
+        category: "hogar",
+        categoryName: "Hogar & Cama",
+        price: 32.00,
+        badge: "Pack x 2",
+        description: "2 Almohadas anatómicas de fibra virgen siliconada. Recuperan su forma tras dormir.",
+        img: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 4,
+        name: "Pantalón Casual Stretch Cómodo",
+        category: "moda",
+        categoryName: "Moda & Ropa",
+        price: 38.00,
+        badge: "Elasticado",
+        description: "Pantalón versátil de tiro medio con pretina cómoda. Ideal para el día a día.",
+        img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 5,
+        name: "Par de Fundas para Almohada con Solapa",
+        category: "hogar",
+        categoryName: "Hogar & Cama",
+        price: 18.00,
+        badge: "Económico",
+        description: "Fundas con diseño decorativo y solapa interior para mantener la almohada firme.",
+        img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 6,
+        name: "Polo de Algodón Fresco de Temporada",
+        category: "moda",
+        categoryName: "Moda & Ropa",
+        price: 24.00,
+        badge: "Algodón",
+        description: "Polos ligeros, frescos y resistentes a los lavados. Colores variados disponibles.",
+        img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 7,
+        name: "Cubrecama / Edredón Reversible Ligero",
+        category: "hogar",
+        categoryName: "Hogar & Cama",
+        price: 65.00,
+        badge: "Elegante",
+        description: "Acolchado liviano con doble vista para renovar el cuarto con facilidad.",
+        img: "https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        id: 8,
+        name: "Polera Cómoda de Franela",
+        category: "moda",
+        categoryName: "Moda & Ropa",
+        price: 42.00,
+        badge: "Suavidad",
+        description: "Polera suave de franela reactiva perchada. Corte cómodo y abrigador.",
+        img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=500&q=80"
+      }
+    ];
+
+    let cart = [];
+
+    // Render products based on category
+    function renderProductsList(filter = 'all') {
+      const container = document.getElementById("product-list");
+      container.innerHTML = "";
+
+      const filtered = filter === 'all' 
+        ? catalog 
+        : catalog.filter(item => item.category === filter);
+
+      filtered.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-3xl overflow-hidden border border-orange-100 shadow-xs card-hover flex flex-col";
+        
+        card.innerHTML = `
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='https://placehold.co/500x350/FFF9F5/FF6B6B?text=Moda+%26+Hogar+GM'">
+            <span class="absolute top-3 left-3 bg-white/95 text-gray-800 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-xs">
+              ${p.categoryName}
+            </span>
+            <span class="absolute top-3 right-3 bg-brand-coral text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-xs">
+              ${p.badge}
+            </span>
+          </div>
+
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <h3 class="font-bold text-gray-900 text-sm leading-snug font-brand">${p.name}</h3>
+              <p class="text-xs text-gray-500 mt-1 line-clamp-2">${p.description}</p>
+            </div>
+
+            <div class="pt-2 border-t border-gray-100">
+              <div class="flex items-baseline justify-between mb-2.5">
+                <span class="text-[11px] text-gray-400">Por unidad:</span>
+                <span class="text-lg font-extrabold text-brand-coral font-brand">S/ ${p.price.toFixed(2)}</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="addToCart(${p.id})" class="py-2 px-2 bg-orange-50 hover:bg-orange-100 text-brand-coral font-bold rounded-xl text-xs flex items-center justify-center gap-1 transition-colors">
+                  <i class="fa-solid fa-cart-plus"></i>
+                  <span>Al Carrito</span>
+                </button>
+                <button onclick="orderSingleDirect(${p.id})" class="py-2 px-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1 transition-colors">
+                  <i class="fa-brands fa-whatsapp"></i>
+                  <span>Pedir Ya</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Set filter category
+    function setFilter(category) {
+      document.querySelectorAll(".filter-tab").forEach(tab => {
+        tab.classList.remove("bg-brand-coral", "text-white");
+        tab.classList.add("bg-white", "text-gray-700");
+      });
+      const active = document.getElementById(`filter-${category}`);
+      if (active) {
+        active.classList.remove("bg-white", "text-gray-700");
+        active.classList.add("bg-brand-coral", "text-white");
+      }
+      renderProductsList(category);
+    }
+
+    // Add product to cart
+    function addToCart(productId) {
+      const product = catalog.find(p => p.id === productId);
+      if (!product) return;
+
+      const itemInCart = cart.find(i => i.id === productId);
+      if (itemInCart) {
+        itemInCart.quantity++;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+
+      renderCartUI();
+      showToast(`"${product.name}" agregado al carrito`);
+    }
+
+    // Modify cart quantity
+    function changeQuantity(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (!item) return;
+
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        cart = cart.filter(i => i.id !== productId);
+      }
+      renderCartUI();
+    }
+
+    // Remove single item
+    function removeFromCart(productId) {
+      cart = cart.filter(i => i.id !== productId);
+      renderCartUI();
+    }
+
+    // Empty entire cart
+    function emptyCart() {
+      cart = [];
+      renderCartUI();
+      showToast("Carrito vaciado");
+    }
+
+    // Render cart drawer view
+    function renderCartUI() {
+      const container = document.getElementById("cart-items");
+      const badge = document.getElementById("cart-badge-count");
+      const totalAmountEl = document.getElementById("cart-total-amount");
+      const checkoutBtn = document.getElementById("cart-checkout-btn");
+
+      const totalItems = cart.reduce((acc, cur) => acc + cur.quantity, 0);
+      const totalCost = cart.reduce((acc, cur) => acc + (cur.price * cur.quantity), 0);
+
+      badge.textContent = totalItems;
+      totalAmountEl.textContent = `S/ ${totalCost.toFixed(2)}`;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-gray-400 space-y-2">
+            <i class="fa-solid fa-cart-shopping text-3xl text-orange-200"></i>
+            <p class="font-bold text-xs text-gray-700">Tu carrito está vacío</p>
+            <p class="text-[11px] text-gray-500">Agrega productos del catálogo para armar tu pedido.</p>
+          </div>
+        `;
+        checkoutBtn.disabled = true;
+      } else {
+        checkoutBtn.disabled = false;
+        container.innerHTML = "";
+
+        cart.forEach(item => {
+          const itemEl = document.createElement("div");
+          itemEl.className = "flex items-center gap-2.5 p-2.5 bg-gray-50 rounded-xl border border-gray-100";
+          itemEl.innerHTML = `
+            <img src="${item.img}" alt="${item.name}" class="w-12 h-12 rounded-lg object-cover">
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-gray-900 truncate">${item.name}</p>
+              <p class="text-xs font-bold text-brand-coral">S/ ${(item.price * item.quantity).toFixed(2)}</p>
+              <div class="flex items-center gap-1.5 mt-1">
+                <button onclick="changeQuantity(${item.id}, -1)" class="w-5 h-5 bg-white border border-gray-200 rounded text-xs font-bold">-</button>
+                <span class="text-xs font-bold text-gray-700">${item.quantity}</span>
+                <button onclick="changeQuantity(${item.id}, 1)" class="w-5 h-5 bg-white border border-gray-200 rounded text-xs font-bold">+</button>
+              </div>
+            </div>
+            <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-rose-500 p-1">
+              <i class="fa-solid fa-trash-can text-xs"></i>
+            </button>
+          `;
+          container.appendChild(itemEl);
+        });
+      }
+    }
+
+    // Toggle cart drawer visibility
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById("cart-drawer");
+      const backdrop = document.getElementById("cart-drawer-backdrop");
+
+      if (open) {
+        backdrop.classList.remove("hidden");
+        drawer.classList.remove("translate-x-full");
+      } else {
+        drawer.classList.add("translate-x-full");
+        backdrop.classList.add("hidden");
+      }
+    }
+
+    // Toggle mobile navigation
+    function toggleMobileNav() {
+      document.getElementById("mobile-nav").classList.toggle("hidden");
+    }
+
+    // Direct single order via WhatsApp
+    function orderSingleDirect(productId) {
+      const item = catalog.find(p => p.id === productId);
+      if (!item) return;
+
+      const message = `¡Hola Doña Gaby! 😊 Vengo de la tienda Moda & Hogar GM y deseo pedir:\n\n` +
+        `• 1x ${item.name} - S/ ${item.price.toFixed(2)}\n\n` +
+        `¿Tiene disponibilidad para coordinar la entrega? Muchas gracias.`;
+
+      window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    // Checkout complete cart via WhatsApp
+    function sendCartOrderToWhatsApp() {
+      if (cart.length === 0) return;
+
+      const totalCost = cart.reduce((acc, cur) => acc + (cur.price * cur.quantity), 0);
+      let listText = "";
+
+      cart.forEach((item, index) => {
+        listText += `${index + 1}. ${item.quantity}x ${item.name} (S/ ${(item.price * item.quantity).toFixed(2)})\n`;
+      });
+
+      const message = `¡Hola Doña Gabriela! 👋 Vengo de la tienda web Moda & Hogar GM y deseo realizar este pedido:\n\n` +
+        `📝 *LISTA DE PRODUCTOS:*\n${listText}\n` +
+        `💰 *TOTAL ESTIMADO:* S/ ${totalCost.toFixed(2)}\n\n` +
+        `Por favor confírmeme los datos para hacer el pago por Yape/Plin o transferencia y coordinar el envío. ¡Muchas gracias! ✨`;
+
+      window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    // Show temporary toast message
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      document.getElementById("toast-text").textContent = message;
+      toast.classList.remove("opacity-0");
+      toast.classList.add("opacity-100");
+
+      setTimeout(() => {
+        toast.classList.remove("opacity-100");
+        toast.classList.add("opacity-0");
+      }, 2000);
+    }
+
+    // Initialize on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      renderProductsList('all');
+      renderCartUI();
+    });
+  </script>
+</body>
+</html>
